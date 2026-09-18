@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>چت آنلاین | ChatHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="chat-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="app-content">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div>
+                    <h1 class="app-title">ChatHub</h1>
+                    <p class="app-subtitle">ارتباط آنلاین، تجربه‌ای متفاوت</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-value" id="onlineCount">۳</div>
+                <div class="stat-label">کاربر آنلاین</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="stat-value" id="premiumCount">۱</div>
+                <div class="stat-label">کاربر پریمیوم</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-comment-dots"></i>
+                </div>
+                <div class="stat-value" id="totalChats">۱۲۴</div>
+                <div class="stat-label">گفت‌وگو امروز</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="stat-value" id="responseTime">۲.۴s</div>
+                <div class="stat-label">میانگین پاسخ</div>
+            </div>
+        </div>
+
+        <!-- Online Users Section -->
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-user-friends"></i>
+                کاربران فعال
+            </h2>
+            <div class="section-badge" id="activeUsersBadge">
+                <i class="fas fa-circle" style="font-size: 8px;"></i>
+                آنلاین
+            </div>
+        </div>
+
+        <!-- Users Grid -->
+        <div class="users-grid" id="usersGrid">
+            <!-- Users will be rendered here -->
+        </div>
+
+        <!-- Help Section -->
+        <div class="empty-state" id="helpSection">
+            <div class="empty-icon">
+                <i class="fas fa-question-circle"></i>
+            </div>
+            <h3 style="color: #94a3b8; margin-bottom: 15px;">نحوه شروع گفت‌وگو</h3>
+            <p class="empty-text">
+                برای شروع چت با هر کاربر، روی دکمه "شروع چت" کلیک کنید.
+                <br>
+                <span style="color: #fbbf24;">💎 نسخه پریمیوم:</span> دسترسی کامل به تمام امکانات چت
+            </p>
+            <button class="popup-secondary" id="showGuideBtn" style="margin-top: 20px; max-width: 200px;">
+                <i class="fas fa-book"></i>
+                راهنمای کامل
+            </button>
+        </div>
+    </div>
+
+    <!-- Notification Bar -->
+    <div class="notification-bar" id="notificationBar">
+        <div class="notification-content">
+            <div class="notification-icon">
+                <i class="fas fa-crown"></i>
+            </div>
+            <div class="notification-text">
+                برای دسترسی کامل به چت، حساب خود را ارتقاء دهید!
+            </div>
+        </div>
+        <button class="notification-button" id="upgradeBtn">
+            ارتقاء حساب
+        </button>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-container">
+            <button class="nav-item active" data-page="chat" onclick="window.location.href='chat.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <span class="nav-label">چت</span>
+                <span class="nav-badge" id="chatBadge">۳</span>
+            </button>
+            
+            <button class="nav-item" data-page="games" onclick="window.location.href='games.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <span class="nav-label">بازی</span>
+            </button>
+            
+            <button class="nav-item" data-page="videos" onclick="window.location.href='videos.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <span class="nav-label">فیلم‌ها</span>
+            </button>
+            
+            <button class="nav-item" data-page="live" onclick="window.location.href='live.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-broadcast-tower"></i>
+                </div>
+                <span class="nav-label">لایو</span>
+            </button>
+            
+            <button class="nav-item" data-page="premium" onclick="window.location.href='premium.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <span class="nav-label">پریمیوم</span>
+            </button>
+        </div>
+    </nav>
+
+    <script src="main.js"></script>
+    <script src="chat.js"></script>
+</body>
+</html>
