@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لایو | ChatHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="live-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="app-content">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <div class="logo-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                    <i class="fas fa-broadcast-tower"></i>
+                </div>
+                <div>
+                    <h1 class="app-title" style="background: linear-gradient(to right, #f59e0b, #d97706);">لایو</h1>
+                    <p class="app-subtitle">پخش زنده و ارتباط مستقیم</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats Container -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon" style="color: #f59e0b; background: rgba(245, 158, 11, 0.1);">
+                    <i class="fas fa-broadcast-tower"></i>
+                </div>
+                <div class="stat-value">۶</div>
+                <div class="stat-label">لایو فعال</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon" style="color: #f59e0b; background: rgba(245, 158, 11, 0.1);">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div class="stat-value" id="totalViewers">۱,۳۳۵</div>
+                <div class="stat-label">بیننده کل</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon" style="color: #f59e0b; background: rgba(245, 158, 11, 0.1);">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-value">۶</div>
+                <div class="stat-label">استریمر</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon" style="color: #f59e0b; background: rgba(245, 158, 11, 0.1);">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="stat-value" id="premiumCount">۰</div>
+                <div class="stat-label">پریمیوم</div>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-broadcast-tower"></i>
+                لایو‌های زنده
+            </h2>
+            <div class="section-badge" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b;">
+                <i class="fas fa-circle"></i>
+                همگی در حال پخش
+            </div>
+        </div>
+
+        <div class="live-grid" id="liveGrid">
+            <!-- لایو‌ها در اینجا رندر می‌شوند -->
+        </div>
+
+        <!-- Premium Banner -->
+        <div class="premium-banner">
+            <i class="fas fa-crown"></i>
+            <h3>برای تماشای لایو‌ها باید پریمیوم باشید!</h3>
+            <p>تمام لایوهای ما فقط برای کاربران پریمیوم قابل مشاهده است.</p>
+            <button class="premium-btn" onclick="goToPremiumPage()">
+                <i class="fas fa-crown"></i>
+                ارتقاء به پریمیوم
+            </button>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-container">
+            <button class="nav-item" data-page="chat" onclick="window.location.href='chat.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <span class="nav-label">چت</span>
+            </button>
+            
+            <button class="nav-item" data-page="games" onclick="window.location.href='games.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <span class="nav-label">بازی</span>
+            </button>
+            
+            <button class="nav-item" data-page="videos" onclick="window.location.href='videos.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <span class="nav-label">فیلم‌ها</span>
+            </button>
+            
+            <button class="nav-item active" data-page="live" onclick="window.location.href='live.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-broadcast-tower"></i>
+                </div>
+                <span class="nav-label">لایو</span>
+            </button>
+            
+            <button class="nav-item" data-page="premium" onclick="window.location.href='premium.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <span class="nav-label">پریمیوم</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Premium Popup -->
+    <div class="premium-popup" id="premiumPopup">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePremiumPopup()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="popup-icon">
+                <i class="fas fa-crown"></i>
+            </div>
+            
+            <h2 class="popup-title">نیاز به حساب پریمیوم</h2>
+            
+            <p class="popup-text">
+                برای تماشای لایو‌ها باید حساب کاربری خود را به پریمیوم ارتقاء دهید.
+                لایوهای ما فقط برای کاربران پریمیوم قابل مشاهده است.
+            </p>
+            
+            <div class="premium-features">
+                <div class="feature">
+                    <i class="fas fa-video"></i>
+                    <span>تماشای تمام لایوها</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-hd"></i>
+                    <span>کیفیت 4K</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-comments"></i>
+                    <span>چت فعال</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-download"></i>
+                    <span>دانلود لایوها</span>
+                </div>
+            </div>
+            
+            <button class="popup-btn" onclick="goToPremiumPage()">
+                <i class="fas fa-crown"></i>
+                ارتقاء به پریمیوم
+            </button>
+            
+            <button class="popup-btn-secondary" onclick="closePremiumPopup()">
+                بعداً
+            </button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="live.js"></script>
+</body>
+</html>
