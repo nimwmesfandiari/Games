@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پریمیوم | ChatHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="premium-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="app-content">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <div class="logo-icon" style="background: linear-gradient(135deg, #a855f7, #7e22ce);">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div>
+                    <h1 class="app-title" style="background: linear-gradient(to right, #a855f7, #7e22ce);">پریمیوم</h1>
+                    <p class="app-subtitle">دسترسی ویژه به تمام امکانات</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-crown"></i>
+                اشتراک پریمیوم
+            </h2>
+            <div class="section-badge" style="background: rgba(168, 85, 247, 0.2); color: #a855f7;">
+                <i class="fas fa-star"></i>
+                ویژه
+            </div>
+        </div>
+
+        <!-- Stats Container -->
+        <div class="stats-container" id="statsContainer"></div>
+
+        <div class="premium-features" id="premiumFeatures">
+            <!-- امکانات پریمیوم در اینجا رندر می‌شوند -->
+        </div>
+
+        <!-- Payment Plans -->
+        <div style="margin-top: 50px;">
+            <h2 class="section-title">
+                <i class="fas fa-shopping-cart"></i>
+                پلن اشتراک
+            </h2>
+            <p style="color: #94a3b8; margin-bottom: 30px; text-align: center;">
+                اشتراک ماهانه با قیمت استثنایی
+            </p>
+
+            <div class="payment-plans" id="paymentPlans">
+                <!-- پلن پرداخت در اینجا رندر می‌شود -->
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div id="testimonialsContainer"></div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-container">
+            <button class="nav-item" data-page="chat" onclick="window.location.href='chat.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <span class="nav-label">چت</span>
+            </button>
+            
+            <button class="nav-item" data-page="games" onclick="window.location.href='games.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <span class="nav-label">بازی</span>
+            </button>
+            
+            <button class="nav-item" data-page="videos" onclick="window.location.href='videos.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <span class="nav-label">فیلم‌ها</span>
+            </button>
+            
+            <button class="nav-item" data-page="live" onclick="window.location.href='live.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-broadcast-tower"></i>
+                </div>
+                <span class="nav-label">لایو</span>
+            </button>
+            
+            <button class="nav-item active" data-page="premium" onclick="window.location.href='premium.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <span class="nav-label">پریمیوم</span>
+            </button>
+        </div>
+    </nav>
+
+    <script src="main.js"></script>
+    <script src="premium.js"></script>
+</body>
+</html>
