@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بازی‌ها | ChatHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="games-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* استایل‌های ویدیو که ممکن است در CSS اصلی نباشند */
+        .game-background-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            transition: transform 0.5s ease;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 40%, rgba(15, 23, 42, 0.9));
+            z-index: 2;
+        }
+        
+        .video-controls-overlay {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+        
+        .video-play-pause,
+        .video-mute-unmute {
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .video-loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            color: white;
+            font-size: 14px;
+            z-index: 4;
+            transition: opacity 0.3s ease;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top: 3px solid #10b981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .game-card:hover .game-background-video {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="app-content">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <div class="logo-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div>
+                    <h1 class="app-title" style="background: linear-gradient(to right, #10b981, #059669);">بازی‌ها</h1>
+                    <p class="app-subtitle">بازی‌های آنلاین جذاب و سرگرم‌کننده</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="stat-value">۴</div>
+                <div class="stat-label">بازی</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-value">۹۰۱</div>
+                <div class="stat-label">بازیکن</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="stat-value">۳۴۷</div>
+                <div class="stat-label">امروز</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="stat-value">۴.۶</div>
+                <div class="stat-label">امتیاز</div>
+            </div>
+        </div>
+
+        <!-- Games Section -->
+        <div class="section-header">
+            <h2 class="section-title">
+                <i class="fas fa-gamepad"></i>
+                بازی‌های آنلاین
+            </h2>
+            <div class="section-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">
+                <i class="fas fa-wifi"></i>
+                آنلاین
+            </div>
+        </div>
+
+        <!-- Games Grid -->
+        <div class="games-grid" id="gamesGrid">
+            <!-- بازی‌ها با ویدیو در اینجا رندر می‌شوند -->
+        </div>
+
+        <!-- Quick Play -->
+        <div class="empty-state">
+            <div class="empty-icon">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <h3 style="color: #94a3b8; margin-bottom: 15px;">شروع فوری بازی</h3>
+            <p style="color: #94a3b8; font-size: 14px; line-height: 1.6; max-width: 500px; margin: 0 auto 20px;">
+                سیستم به صورت خودکار یک بازی و حریف مناسب برای شما انتخاب می‌کند.
+            </p>
+            <button class="popup-button" id="quickStartBtn" style="margin-top: 10px; max-width: 250px; background: linear-gradient(135deg, #10b981, #059669);">
+                <i class="fas fa-play-circle"></i>
+                شروع بازی تصادفی
+            </button>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-container">
+            <button class="nav-item" data-page="chat" onclick="window.location.href='chat.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <span class="nav-label">چت</span>
+            </button>
+            
+            <button class="nav-item active" data-page="games" onclick="window.location.href='games.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <span class="nav-label">بازی</span>
+            </button>
+            
+            <button class="nav-item" data-page="videos" onclick="window.location.href='videos.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <span class="nav-label">فیلم‌ها</span>
+            </button>
+            
+            <button class="nav-item" data-page="live" onclick="window.location.href='live.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-broadcast-tower"></i>
+                </div>
+                <span class="nav-label">لایو</span>
+            </button>
+            
+            <button class="nav-item" data-page="premium" onclick="window.location.href='premium.html'">
+                <div class="nav-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <span class="nav-label">پریمیوم</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Video Assets Preloader -->
+    <div id="videoPreloader" style="display: none;"></div>
+
+    <script src="games.js"></script>
+</body>
+</html>
